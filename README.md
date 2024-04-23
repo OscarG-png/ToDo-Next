@@ -13,3 +13,4 @@ For this Project i'm working with
 - Next.js
 - Drizzle
 - Tailwind CSS
+- Shadcn UI
