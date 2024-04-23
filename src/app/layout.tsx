@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "~/components/theme.provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,9 +22,16 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`font-sans ${inter.variable}`}>{children}</body>
-      </html>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <html lang="en">
+          <body className={`font-sans ${inter.variable}`}>{children}</body>
+        </html>
+      </ThemeProvider>
     </ClerkProvider>
   );
 }
