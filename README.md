@@ -13,4 +13,5 @@ For this Project i'm working with
 - Next.js
 - Drizzle
 - Tailwind CSS
+- Clerk for authentication
 - Shadcn UI
