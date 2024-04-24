@@ -9,6 +9,8 @@ import {
   timestamp,
   varchar,
   integer,
+  boolean,
+  date,
 } from "drizzle-orm/pg-core";
 
 /**
@@ -19,30 +21,15 @@ import {
  */
 export const createTable = pgTableCreator((name) => `todo-next_${name}`);
 
-export const posts = createTable(
-  "post",
-  {
-    id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
-    createdAt: timestamp("created_at")
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updatedAt"),
-  },
-  (example) => ({
-    nameIndex: index("name_idx").on(example.name),
-  })
-);
-
 export const projects = createTable(
   "project",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }).notNull(),
+    name: varchar("name", { length: 120 }).notNull(),
+    description: varchar("description", { length: 256 }).notNull(),
     createdAt: timestamp("created_at")
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    tasks: integer("tasks_id").references(() => task.id, {onDelete: "cascade"}),
   },
 )
 
@@ -50,11 +37,11 @@ export const task = createTable(
   "task",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }).notNull(),
-    createdAt: timestamp("created_at")
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updatedAt"),
+    name: varchar("name", { length: 120 }).notNull(),
+    startDate: date("startDate").notNull(),
+    dueDate: date("dueDate").notNull(),
+    isComplete: boolean("isComplete").default(false).notNull(),
+    project: integer("projectId").references(() => projects.id, {onDelete: "cascade"}),
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
