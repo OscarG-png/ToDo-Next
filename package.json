@@ -12,7 +12,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.0.0-beta.46",
+    "@clerk/nextjs": "^5.0.2",
     "@t3-oss/env-nextjs": "^0.9.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
