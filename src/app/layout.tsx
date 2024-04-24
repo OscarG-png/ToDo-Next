@@ -22,16 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <html lang="en">
-          <body className={`font-sans ${inter.variable}`}>{children}</body>
-        </html>
-      </ThemeProvider>
+      {/* <ThemeProvider attribute="class" defaultTheme="system"> */}
+      <html lang="en">
+        <body className={`font-sans ${inter.variable}`}>{children}</body>
+      </html>
+      {/* </ThemeProvider> */}
     </ClerkProvider>
   );
 }
