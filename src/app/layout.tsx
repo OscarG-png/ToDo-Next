@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className={`font-sans ${inter.variable}`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
